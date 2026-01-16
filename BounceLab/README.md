@@ -1,37 +1,44 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+BounceLab — Physics Ball Game
+BounceLab — это мобильное приложение на React Native, демонстрирующее базовую физику мячика с тремя игровыми режимами, настройками темы и чувствительности.
 
-# Getting Started
+Основные функции
+3 игровых режима:
+Classic: один мячик падает вниз под действием гравитации.
+Zero-G: мячик следует за касанием без гравитации.
+Multi: 5 мячиков падают; каждый можно поднять касанием.
+Тёмная/светлая тема с сохранением между запусками.
+Настройка чувствительности (влияет на скорость и реакцию).
+Все данные сохраняются через AsyncStorage.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+Требования
+Node.js
+npm или yarn
+JDK 11+
+Android SDK
+Установленный эмулятор или подключённое Android-устройство
 
-## Step 1: Start Metro
+Запуск в режиме разработки
+```
+# Установить зависимости
+npm install
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
-
-To start the Metro dev server, run the following command from the root of your React Native project:
-
-```sh
-# Using npm
+# Запустить Metro-сервер (в одном терминале)
 npm start
 
-# OR using Yarn
-yarn start
+# Установить и запустить на устройстве (в другом терминале)
+npx run android
 ```
 
-## Step 2: Build and run your app
+Сборка APK (release)
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+Выполните:
 ```
+cd android
+./gradlew assembleRelease
+```
+Готовый APK будет находиться в:
+android/app/build/outputs/apk/release/app-release.apk
 
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
+Структура проекта
+src/ — основной код (экраны, контекст, утилиты)
+android/ — нативная часть под Android
