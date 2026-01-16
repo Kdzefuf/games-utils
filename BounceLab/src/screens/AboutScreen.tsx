@@ -7,12 +7,8 @@ const AboutScreen: React.FC = () => {
     const bg = theme === 'dark' ? '#121212' : '#f9f9f9';
     const text = theme === 'dark' ? '#ffffff' : '#333333';
 
-    const shareApp = () => {
-        Alert.alert('Install link: https://example.com/bouncelab.apk');
-    };
-
     const openGitHub = () => {
-        Linking.openURL('https://github.com/yourname/BounceLab').catch(() =>
+        Linking.openURL('https://github.com/Kdzefuf/games-utils/tree/main/BounceLab').catch(() =>
             Alert.alert('Failed to open GitHub')
         );
     };
@@ -23,10 +19,6 @@ const AboutScreen: React.FC = () => {
             <Text style={[styles.text, { color: text }]}>Version 1.0.0</Text>
             <Text style={[styles.text, { color: text }]}>React Native Test Project</Text>
             <Text style={[styles.text, { color: text }]}>© 2026</Text>
-
-            <TouchableOpacity style={styles.button} onPress={shareApp}>
-                <Text style={styles.buttonText}>Share</Text>
-            </TouchableOpacity>
 
             <TouchableOpacity style={styles.button} onPress={openGitHub}>
                 <Text style={styles.buttonText}>Source Code</Text>
