@@ -54,7 +54,7 @@ const PilotLogbook: React.FC = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Text style={styles.title}>Pilot Logbook</Text>
 
             <View style={styles.form}>
@@ -97,7 +97,7 @@ const PilotLogbook: React.FC = () => {
                     ))
                 )}
             </ScrollView>
-        </View>
+        </ScrollView>
     );
 };
 

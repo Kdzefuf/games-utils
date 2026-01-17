@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
 const HomeScreen: React.FC = () => {
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.content}>
                 <Text style={styles.title}>SkyPilot</Text>
                 <Text style={styles.subtitle}>Your aviation companion in the sky</Text>
@@ -13,7 +13,7 @@ const HomeScreen: React.FC = () => {
                     Explore aircraft, simulate flights, check weather, and log your journeys.
                 </Text>
             </View>
-        </SafeAreaView>
+        </View>
     );
 };
 

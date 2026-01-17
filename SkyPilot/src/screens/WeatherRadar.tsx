@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, SafeAreaView, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 const { width } = Dimensions.get('window');
@@ -19,7 +19,7 @@ const WeatherRadar: React.FC = () => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.container}>
             <Text style={styles.title}>Weather Radar</Text>
             <View style={styles.pickerContainer}>
                 <Picker
@@ -39,7 +39,7 @@ const WeatherRadar: React.FC = () => {
                 <Text style={styles.detail}>Wind: {selectedAirport.wind} km/h</Text>
                 <Text style={styles.detail}>Conditions: {selectedAirport.clouds}</Text>
             </View>
-        </SafeAreaView>
+        </ScrollView>
     );
 };
 

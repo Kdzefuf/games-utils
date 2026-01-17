@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface LogEntry {
     id: string;
-    date: string; // ISO string
+    date: string;
     aircraft: string;
     hours: number;
     route: string;

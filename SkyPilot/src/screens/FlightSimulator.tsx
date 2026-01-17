@@ -4,7 +4,6 @@ import {
     View,
     Text,
     StyleSheet,
-    SafeAreaView,
     Dimensions,
     Image,
 } from 'react-native';
@@ -14,20 +13,16 @@ const { width, height } = Dimensions.get('window');
 const AIRPLANE_IMAGE = require('../../assets/images/airplane.png');
 const GROUND_IMAGE = require('../../assets/images/ground.png');
 
-const MIN_ALTITUDE = 100;    // метров
-const MAX_ALTITUDE = 12000;  // метров
+const MIN_ALTITUDE = 100;
+const MAX_ALTITUDE = 12000;
 
 const FlightSimulator: React.FC = () => {
-    const [altitude, setAltitude] = useState(3000); // meters
-    const [speed, setSpeed] = useState(400);        // km/h
-    const [bankAngle, setBankAngle] = useState(0);  // degrees
+    const [altitude, setAltitude] = useState(3000);
+    const [speed, setSpeed] = useState(400);
+    const [bankAngle, setBankAngle] = useState(0);
 
-    // Рассчитываем позицию земли: чем выше — тем ниже земля (больше offset вниз)
-    // Диапазон позиции: от -100 (очень высоко) до +200 (почти на земле)
     const groundOffsetY = (() => {
-        // Нормализуем высоту от 0 до 1
         const normalized = (altitude - MIN_ALTITUDE) / (MAX_ALTITUDE - MIN_ALTITUDE);
-        // Отображаем в диапазон [-100, 200]
         return -50 + normalized * 300;
     })();
 
@@ -41,11 +36,9 @@ const FlightSimulator: React.FC = () => {
     const bankRight = () => setBankAngle((prev) => Math.min(prev + 8, 45));
 
     return (
-        <SafeAreaView style={styles.container}>
-            {/* Небо */}
+        <View style={styles.container}>
             <View style={styles.sky} />
 
-            {/* Земля — двигается по Y */}
             <View
                 style={[
                     styles.groundContainer,
@@ -57,7 +50,6 @@ const FlightSimulator: React.FC = () => {
                 <Image source={GROUND_IMAGE} style={styles.ground} resizeMode="stretch" />
             </View>
 
-            {/* Самолёт — фиксированная позиция */}
             <View
                 style={[
                     styles.airplaneContainer,
@@ -69,7 +61,6 @@ const FlightSimulator: React.FC = () => {
                 <Image source={AIRPLANE_IMAGE} style={styles.airplane} resizeMode="contain" />
             </View>
 
-            {/* Индикаторы */}
             <View style={styles.indicators}>
                 <Text style={styles.altitudeText}>Alt: {altitude} m</Text>
                 <Text style={[styles.speedText, isStall && styles.stallWarning]}>
@@ -78,14 +69,12 @@ const FlightSimulator: React.FC = () => {
                 <Text style={styles.bankText}>Bank: {bankAngle}°</Text>
             </View>
 
-            {/* Предупреждение о сваливании */}
             {isStall && (
                 <View style={styles.stallAlert}>
                     <Text style={styles.stallAlertText}>STALL! INCREASE SPEED!</Text>
                 </View>
             )}
 
-            {/* Компактные кнопки */}
             <View style={styles.controls}>
                 <View style={styles.row}>
                     <ControlButton title="↑ Climb" onPress={climb} />
@@ -100,7 +89,7 @@ const FlightSimulator: React.FC = () => {
                     <ControlButton title="–" onPress={decelerate} />
                 </View>
             </View>
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -126,7 +115,7 @@ const styles = StyleSheet.create({
     groundContainer: {
         position: 'absolute',
         bottom: 0,
-        width: width * 1.2,
+        width: '100%',
         height: height * 0.3,
         alignItems: 'center',
         justifyContent: 'flex-end',
@@ -137,7 +126,7 @@ const styles = StyleSheet.create({
     },
     airplaneContainer: {
         position: 'absolute',
-        top: height * 0.1,
+        top: height * 0.05,
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 10,
@@ -148,8 +137,8 @@ const styles = StyleSheet.create({
     },
     indicators: {
         position: 'absolute',
-        top: 60,
-        left: 20,
+        top: 20,
+        left: '20%',
         backgroundColor: 'rgba(255,255,255,0.7)',
         padding: 10,
         borderRadius: 8,
@@ -204,10 +193,10 @@ const styles = StyleSheet.create({
     },
     controlButtonWrapper: {
         backgroundColor: '#4ECDC4',
-        paddingHorizontal: 12,
-        paddingVertical: 6,
-        borderRadius: 6,
-        marginHorizontal: 4,
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+        borderRadius: 8,
+        margin: 4,
     },
     controlButtonText: {
         color: '#0A2463',
